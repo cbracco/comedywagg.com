@@ -1,0 +1,33 @@
+{
+  "name": "comedywagg.com",
+  "version": "1.0.0",
+  "description": "The source code for the comedywagg.com website.",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve --quiet",
+    "build": "NODE_ENV=production eleventy",
+    "debug": "DEBUG=Eleventy* eleventy",
+    "debugstart": "DEBUG=Eleventy* eleventy --serve --quiet",
+    "benchmark": "DEBUG=Eleventy:Benchmark* eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbracco/comedywagg.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbracco/comedywagg.com/issues"
+  },
+  "homepage": "https://github.com/cbracco/comedywagg.com#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-bundle": "^1.0.5"
+  }
+}
