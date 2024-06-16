@@ -21,6 +21,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    color: #fff;
+}
+
+input, button {
+    font-family: inherit;
+    font-size: inherit;
 }
 
 img {
@@ -30,7 +37,7 @@ img {
 
 .logo {
     width: 65%;
-    margin-bottom: 2vh;
+    margin-bottom: 3vh;
 }
 
 .desc {
@@ -38,8 +45,63 @@ img {
     font-weight: 400;
     font-style: normal;
     font-size: 4vw;
-    color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    margin-bottom: 0;
+    margin: 3vh 0;
+}
+
+.subscribe-form {
+    width: 100%;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.subscribe-form h3 {
+    margin: 3vh 0 1rem;
+}
+
+.formkit-fields {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.formkit-field {
+    flex-grow: 1;
+}
+
+.formkit-input {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: 0;
+}
+
+.formkit-submit {
+    padding: 1rem;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #1ebe63;
+}
+
+.formkit-alert-error {
+    display: none;
+}
+
+.formkit-alert {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+}
+
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
