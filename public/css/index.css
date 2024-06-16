@@ -47,7 +47,6 @@ h4,
 h5,
 h6 {
     font-family: "Archivo Black", sans-serif;
-    letter-spacing: 0.02em;
 }
 
 .desc {
@@ -100,7 +99,6 @@ h6 {
     color: #000;
     white-space: nowrap;
     font-family: "Archivo Black", sans-serif;
-    letter-spacing: 0.02em;
 }
 
 .formkit-alert-error {
