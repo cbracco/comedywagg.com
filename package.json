@@ -28,6 +28,7 @@
   "homepage": "https://github.com/cbracco/comedywagg.com#readme",
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-bundle": "^1.0.5"
   }
 }
