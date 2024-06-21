@@ -28,55 +28,142 @@
     <link rel="preconnect" href="{{ metadata.url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     {#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
     {%- css %}{% include "public/css/index.css" %}{% endcss %}
     <style>{% getBundle "css" %}</style>
 </head>
 <body>
-    <img class="logo" src="/img/logo.svg" alt="{{ metadata.title }} logo">
-    <p class="desc">Full website coming soon</p>
-    <div class="subscribe-form">
-    <h3>Join our mailing list</h3>
-    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-    <form
-        action="https://app.convertkit.com/forms/6711916/subscriptions"
-        class="seva-form formkit-form"
-        method="post"
-        data-sv-form="6711916"
-        data-uid="bba9a3d60f"
-        data-format="inline"
-        data-version="5"
-        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":true,"url":"https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
-        min-width="400 500 600 700 800"
-    >
-        <div class="formkit-container" data-style="full">
-            <div>
-                <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-                <div data-element="fields" data-stacked="true" class="seva-fields formkit-fields">
-                    <div class="formkit-field">
-                        <label class="sr-only" for="email_address">Email</label>
-                        <input
-                            class="formkit-input"
-                            name="email_address"
-                            aria-label="Email Address"
-                            placeholder="Email Address"
-                            required=""
-                            type="email"
-                        />
-                    </div>
-                    <button data-element="submit" class="formkit-submit formkit-submit">
-                        <div class="formkit-spinner">
-                            <div></div>
-                            <div></div>
-                            <div></div>
+    <header class="header">
+        <div class="container">
+            <nav class="nav nav--left">
+                <ul>
+                    <li><a href="#shows">Shows</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                </ul>
+            </nav>
+            <img class="logo" src="/img/logo.svg" alt="{{ metadata.title }} logo">
+            <nav class="nav nav--right">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="nav nav--social">
+                <ul>
+                    <li>
+                        <a href="https://instagram.com/{{ metadata.social }}" title="Follow @{{ metadata.social }} on Instagram" rel="nofollow">
+                            <img src="/img/instagram.svg" width="24" height="24" alt="" rel="presentation">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="section" id="shows">
+        <div class="container">
+            <h1 class="section__heading">Upcoming Shows</h1>
+            {% for event in eventbrite.events %}
+                {% if event.status !== "completed" %}
+                    <div class="event">
+                        <a class="event__image" href="{{ event.url }}" target="_blank" rel="noreferrer">
+                            <img src="{{ event.logo.original.url }}" width="940" alt="{{ event.name.text }}" loading="lazy">
+                        </a>
+                        <div class="event__meta">
+                            {{ event.start.utc | humanizeDate }} &middot; {{ event.start.utc | humanizeStartTime }} &middot; {{ event.venue.address.city }}, {{ event.venue.address.region }}
                         </div>
-                        <span class="">Subscribe</span>
-                    </button>
-                </div>
+                        <h2 class="event__name">
+                            <a href="{{ event.url }}" target="_blank" rel="noreferrer">
+                                {{ event.name.text }}
+                            </a>
+                        </h2>
+                        <div class="event__cta">
+                            <a class="button button--secondary" href="{{ event.url }}" target="_blank" rel="noreferrer">Get Tickets</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                There are no events scheduled at this time. Check back soon.
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section" id="newsletter">
+        <div class="container">
+            <h1 class="section__heading has-desc">Newsletter</h1>
+            <div class="section__description">Sign up to our email newsletter for updates, exclusive content, and much more.</div>
+            <div class="subscribe-form">
+                <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+                <form
+                    action="https://app.convertkit.com/forms/6711916/subscriptions"
+                    class="seva-form formkit-form"
+                    method="post"
+                    data-sv-form="6711916"
+                    data-uid="bba9a3d60f"
+                    data-format="inline"
+                    data-version="5"
+                    data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":true,"url":"https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
+                    min-width="400 500 600 700 800"
+                >
+                    <div class="formkit-container" data-style="full">
+                        <div>
+                            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                            <div data-element="fields" data-stacked="true" class="seva-fields formkit-fields">
+                                <div class="formkit-field">
+                                    <label class="sr-only" for="email_address">Email</label>
+                                    <input
+                                        class="formkit-input"
+                                        name="email_address"
+                                        aria-label="Email Address"
+                                        placeholder="Email Address"
+                                        required=""
+                                        type="email"
+                                    />
+                                </div>
+                                <button data-element="submit" class="button button--primary formkit-submit">
+                                    <div class="formkit-spinner">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <span class="">Subscribe</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
-</div>
+    </section>
+    <section class="section" id="about">
+        <div class="container">
+            <h1 class="section__heading has-desc">About</h1>
+            <div class="section__description">
+                <p>Welcome to Comedy Wagg! Based in NYC and New Jersey, Comedy Wagg is your ticket to standup comedy events. Founded by seasoned comics Jameson Cox and Johnny O’Keeffe, who’ve shared stages with comedy greats like Adrian Iapalucci, Aaron Berg, TJ Miller, Jim Florentine annd Geoff Asmus. Our productions guarantee non-stop hilarity. Comedy Wagg aims to bring your favorite comics to you and introduce you to your next favorite comic.</p>
+                <p>Catch us monthly at the iconic Grisly Pear comedy club in midtown Manhattan, or join us for laughs at our two monthly shows at the Wayne Ale House in Wayne, NJ. Stay in the loop with all things Comedy Wagg—follow us on Instagram <a href="https://instagram.com/{{ metadata.social }}" title="Follow @{{ metadata.social }} on Instagram" rel="nofollow">@comedywagg</a> and sign up for our mailing list to be first in line for special event announcements show.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="contact">
+        <div class="container">
+            <h1 class="section__heading has-desc">Contact</h1>
+            <div class="section__description">
+                Please send all questions, comments, and inquiries to <a href="mailto:comedywagg@gmail.com">comedywagg@gmail.com</a>.
+            </div>
+            <div class="section__social">
+                <a href="https://instagram.com/{{ metadata.social }}" title="Follow @{{ metadata.social }} on Instagram" rel="nofollow">
+                    <img src="/img/instagram.svg" width="24" height="24" alt="" rel="presentation">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="copyright">
+        <div class="container">
+            <div class="copyright">
+                Copyright &copy; {% year %} {{ metadata.title }}. All Rights Reserved.<br>
+                Website by <a href="https://chrisbracco.com" target="_blank" rel="noreferrer">@cbracco</a>.
+            </div>
+        </div>
+    </section>
 </body>
 </html>
