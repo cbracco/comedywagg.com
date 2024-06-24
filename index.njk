@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ metadata.language }}">
 <head>
+    {% if metadata.isProd %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJ9F7LNNMN"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ metadata.googleAnalyticsID }}');
+    </script>
+    {% endif %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

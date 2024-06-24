@@ -7,4 +7,5 @@ module.exports = {
     lang: "en",
     social: "comedywagg",
     isProd: process.env.NODE_ENV === 'production',
+    googleAnalyticsID: "G-QJ9F7LNNMN"
 };
