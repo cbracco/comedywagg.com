@@ -3,7 +3,7 @@
 <head>
     {% if metadata.isProd %}
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJ9F7LNNMN"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ metadata.googleAnalyticsID }}"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
