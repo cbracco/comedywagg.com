@@ -82,7 +82,7 @@
                             <img src="{{ event.logo.original.url }}" width="940" alt="{{ event.name.text }}" loading="lazy">
                         </a>
                         <div class="event__meta">
-                            {{ event.start.utc | humanizeDate }} &middot; {{ event.start.utc | humanizeStartTime }} &middot; {{ event.venue.address.city }}, {{ event.venue.address.region }}
+                            {{ event.start.local | humanizeDate }} &middot; {{ event.start.local | humanizeStartTime }} &middot; {{ event.venue.address.city }}, {{ event.venue.address.region }}
                         </div>
                         <h2 class="event__name">
                             <a href="{{ event.url }}" target="_blank" rel="noreferrer">
